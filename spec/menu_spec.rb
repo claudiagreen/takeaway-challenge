@@ -6,12 +6,8 @@ describe Menu do
 
   describe '#view_menu' do
     it "displays a list of dishes with prices" do
-      expect(menu.view_menu).to eq menu.list_dishes
+      expect(menu.view_menu).to eq menu.dishes
     end
-  end
-
-  describe '#order' do
-
   end
 
 end
