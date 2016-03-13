@@ -21,5 +21,9 @@ describe Menu do
     it 'returns the price of the dish picked' do
       expect(menu.pick_dish("beef")).to eq 8
     end
+    it "raises error if dish isn't on the menu" do
+      expect{menu.pick_dish("radish")}.to raise_error described_class::MENU_ERROR
+    end
   end
+
 end
