@@ -1,13 +1,14 @@
 require 'order'
 require 'menu'
+require 'text'
 
 describe Order do
 
-  subject(:order){described_class.new}
+  let(:text_class){double:text_class, new: message}
+  let(:message){double:message, send_message: nil}
+
+  subject(:order){described_class.new(menu = Menu.new, text_class)}
   let(:menu) {double :menu, dishes: Menu::DISHES}
-  # let(:dish1)  {double "dish1"}
-  # let(:dish2) {double "dish2"}
-  # allow(pick_dish).to receive(:dish3).and_return(8)
   let(:dish3) {double :dish3, pick_dish: 8}
 
 
@@ -33,10 +34,28 @@ describe Order do
   end
 
   describe "#basket_total" do
-    it "returns the total price of the order in basket" do
+    xit "returns the total price of the order in basket" do
       order.add_item(dish3)
       p order
       expect(order.basket_total).to eq total
+    end
+  end
+
+  describe "#return_total" do
+    it "returns the correct total" do
+      order.add_item("beef")
+      expect(order.confirm_total).to eq "Your total amount to pay is: £#{order.basket_total}.00"
+    end
+  end
+
+  describe "#complete" do
+    it "can complete order if payment amount is correct" do
+      order.add_item("beef")
+      order.complete
+      expect(message).to receive(:send_message)
+    end
+    it "raises an error when trying to compelte on empty order" do
+      expect{order.complete}.to raise_error described_class::COMPLETE_ERROR
     end
   end
 
