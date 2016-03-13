@@ -17,4 +17,9 @@ describe Menu do
     end
   end
 
+  describe '#pick_dish' do
+    it 'returns the price of the dish picked' do
+      expect(menu.pick_dish("beef")).to eq 8
+    end
+  end
 end

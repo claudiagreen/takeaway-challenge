@@ -4,24 +4,21 @@ class Order
 
   attr_reader :basket, :amount
 
-  def initialize
+  def initialize(menu = Menu.new)
+    @menu = menu
     @basket = []
-    @quant = []
+    @total = 0
   end
 
   def add_item(dish, quantity=1)
-    @basket << dish
-    @quant << quantity
+    @basket << [dish, @menu.pick_dish(dish), quantity]
   end
 
-  def price_total
-    total = 0
-    basket.each_with_index do |item, index|
-      total += (item.price * quant[index])
+  def basket_total
+    @basket.each do |item, price, quantity|
+      @total += price * quantity
     end
-    total
+    @total
   end
-
-
 
 end
