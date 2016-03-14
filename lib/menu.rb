@@ -20,7 +20,7 @@ class Menu
 
   def pick_dish(dish)
     raise MENU_ERROR if on_menu?(dish) == false
-    @dishes[dish.to_sym]
+    @dishes[dish]
   end
 
   def price(item)
@@ -30,7 +30,7 @@ class Menu
   private
 
   def on_menu?(dish)
-    @dishes.include?(dish.to_sym)
+    @dishes.include?(dish)
   end
 
 end

@@ -6,7 +6,7 @@ class Order
   attr_reader :basket, :amount
   COMPLETE_ERROR = "You need to add to basket before completing order."
 
-  def initialize(menu = Menu.new, message = Text)
+  def initialize(menu = Menu.new, message = Text.new) #
     @menu = menu
     @basket = []
     @message = message

@@ -3,7 +3,6 @@ require 'menu'
 describe Menu do
 
   subject(:menu){described_class.new}
-  let(:dish)  {double :dish,  price: 8}
 
   describe '#view_menu' do
     it "displays a list of dishes with prices" do
@@ -19,10 +18,10 @@ describe Menu do
 
   describe '#pick_dish' do
     it 'returns the price of the dish picked' do
-      expect(menu.pick_dish("beef")).to eq 8
+      expect(menu.pick_dish(:beef)).to eq 8
     end
     it "raises error if dish isn't on the menu" do
-      expect{menu.pick_dish("radish")}.to raise_error described_class::MENU_ERROR
+      expect{menu.pick_dish(:radish)}.to raise_error described_class::MENU_ERROR
     end
   end
 
